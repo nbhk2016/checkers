@@ -30,7 +30,7 @@ ymaps.ready(function () {
         // Наша панорама будет содержать два уровня масштабирования
         // панорамного изображения: низкого и высокого качества.
         this._tileLevels = [
-            new TileLevel('tiles/lq/%c.jpg', [512, 512]),
+            new TileLevel('tiles/lq/%c.jpg', [512, 256]),
             new TileLevel('tiles/hq/%c.jpg', [10752, 4918])
         ];
     }
