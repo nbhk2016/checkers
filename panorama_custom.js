@@ -31,7 +31,11 @@ ymaps.ready(function () {
         // панорамного изображения: низкого и высокого качества.
         this._tileLevels = [
             new TileLevel('tiles/lq/%c.jpg', [512, 256]),
+<<<<<<< HEAD
             new TileLevel('tiles/hq/%c.jpg', [10752, 4918])
+=======
+            new TileLevel('tiles/hq/%c.jpg', [8192, 4096])
+>>>>>>> b7826f34daa76a6b49e5ed5e0d94a11eecbccb47
         ];
     }
 
