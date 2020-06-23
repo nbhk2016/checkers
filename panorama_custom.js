@@ -71,5 +71,4 @@ ymaps.ready(function () {
 
     // Теперь создаем плеер с экземпляром нашей панорамы.
     var player = new ymaps.panorama.Player('player', new Panorama());
-    document.querySelector('.ymaps-2-1-76-panorama-control__copyright-logo').remove()
 });
