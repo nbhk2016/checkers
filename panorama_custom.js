@@ -16,7 +16,7 @@ ymaps.ready(function () {
     ymaps.util.defineClass(TileLevel, {
         getTileUrl: function (x, y) {
             // Определяем URL тайла для переданных индексов.
-            return this._urlTemplate.replace('%c', x + '-' + y);
+            return this._urlTemplate.replace('%c', y + '-' + x);
         },
 
         getImageSize: function () {
