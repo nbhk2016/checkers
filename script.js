@@ -11,7 +11,7 @@ class Figure {
 	}
 
 	goTo(x, y){
-		if ((this.x != x && this.y != y) && (!field[x][y].figure) && field[x][y].color == 'black') {
+		if (((this.color == 'black' && this.y - y = 1) || (this.color == 'white' && this.y - y = - 1)) && (this.x != x && this.y != y) && (!field[x][y].figure) && field[x][y].color == 'black') {
 			document.querySelectorAll(`td[data-x="${this.x}"][data-y="${this.y}"]>span`)[0].remove()
 			delete field[this.x][this.y].figure
 			let elem = document.createElement('span')
