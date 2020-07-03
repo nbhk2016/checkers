@@ -1,0 +1,42 @@
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td {
+	width: 76px;
+	height: 76px;
+	padding: 0;
+}
+
+.black {
+	background-color: brown;
+}
+
+.white {
+	background-color: orange;
+}
+
+span {
+	margin: 0;
+	margin-bottom: -3px;
+	padding: 0;
+	display: inline-block;
+	width: 75px; 
+	height: 75px;
+	border-radius: 50%;
+}
+
+.blackFigure {
+	background: black;
+}
+
+.whiteFigure {
+	background: white;
+}
+
+td:hover span {
+	width: 67px;
+	height: 67px;
+	border: 4px solid yellow;
+}
