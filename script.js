@@ -2,6 +2,8 @@
 
 let field = [[], [], [], [], [], [], [], []]
 
+let player = 0
+
 
 class Figure {
 	constructor(x, y, color){
@@ -33,6 +35,8 @@ class Figure {
 	}
 
 	goTo(x, y){
+		if (this.color == 'white' && player == 1 || this.color == 'black' && player == 0) return
+		
 		if ((this.x != x && this.y != y) && (!field[x][y].figure) && field[x][y].color == 'black') {
 			if (Math.abs(this.x - x) == 1 && (this.color == 'black' && this.y - y == -1 || this.color == 'white' && this.y - y == 1))
 				this.move(x, y)
@@ -64,8 +68,8 @@ class Figure {
 				}
 			}
 		}
-
 		
+		player = !player
 	}
 
 	del(){
