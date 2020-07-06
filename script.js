@@ -68,8 +68,15 @@ class Figure {
 				}
 			}
 		}
+
+		if (this.x > 1 && this.y > 1 && this.color == 'white' && field[this.x - 1][this.y - 1].hasOwnProperty('figure') && !field[this.x - 2][this.y - 2].hasOwnProperty('figure') && field[this.x - 1][this.y - 1].figure.color == 'black' ||
+			this.x < 6 && this.y > 1 && this.color == 'white' && field[this.x + 1][this.y - 1].hasOwnProperty('figure') && !field[this.x + 2][this.y - 2].hasOwnProperty('figure') && field[this.x + 1][this.y - 1].figure.color == 'black' ||
+			this.x < 6 && this.y < 6 && this.color == 'black' && field[this.x + 1][this.y + 1].hasOwnProperty('figure') && !field[this.x + 2][this.y + 2].hasOwnProperty('figure') && field[this.x + 1][this.y + 1].figure.color == 'white' ||
+			this.x > 1 && this.y < 6 && this.color == 'black' && field[this.x - 1][this.y + 1].hasOwnProperty('figure') && !field[this.x - 2][this.y + 2].hasOwnProperty('figure') && field[this.x - 1][this.y + 1].figure.color == 'white') 
+			player = !player
 		
 		player = !player
+		
 	}
 
 	del(){
