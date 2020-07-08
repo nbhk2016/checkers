@@ -4,6 +4,10 @@ let field = [[], [], [], [], [], [], [], []]
 
 let player = 0
 
+let current = []
+
+let locked = 0
+
 
 class Figure {
 	constructor(x, y, color){
@@ -36,8 +40,13 @@ class Figure {
 
 	goTo(x, y){
 		if (this.color == 'white' && player == 1 || this.color == 'black' && player == 0) return
+
+		if (locked){
+			if (current[0] != this.x || current[1] != this.y) return
+			else locked = 0
+		}
 		
-		if ((this.x != x && this.y != y) && (!field[x][y].figure) && field[x][y].color == 'black') {
+		if (!(this.x == x && this.y == y) && (!field[x][y].figure) && field[x][y].color == 'black') {
 			if (Math.abs(this.x - x) == 1 && (this.color == 'black' && this.y - y == -1 || this.color == 'white' && this.y - y == 1))
 				this.move(x, y)
 			 
@@ -66,14 +75,17 @@ class Figure {
 					}
 
 				}
+
+				if (this.x > 1 && this.y > 1 && this.color == 'white' && field[this.x - 1][this.y - 1].hasOwnProperty('figure') && !field[this.x - 2][this.y - 2].hasOwnProperty('figure') && field[this.x - 1][this.y - 1].figure.color == 'black' ||
+					this.x < 6 && this.y > 1 && this.color == 'white' && field[this.x + 1][this.y - 1].hasOwnProperty('figure') && !field[this.x + 2][this.y - 2].hasOwnProperty('figure') && field[this.x + 1][this.y - 1].figure.color == 'black' ||
+					this.x < 6 && this.y < 6 && this.color == 'black' && field[this.x + 1][this.y + 1].hasOwnProperty('figure') && !field[this.x + 2][this.y + 2].hasOwnProperty('figure') && field[this.x + 1][this.y + 1].figure.color == 'white' ||
+					this.x > 1 && this.y < 6 && this.color == 'black' && field[this.x - 1][this.y + 1].hasOwnProperty('figure') && !field[this.x - 2][this.y + 2].hasOwnProperty('figure') && field[this.x - 1][this.y + 1].figure.color == 'white') {
+						player = !player
+						locked = 1
+						current = [this.x, this.y]
+					}
 			}
 		}
-
-		if (this.x > 1 && this.y > 1 && this.color == 'white' && field[this.x - 1][this.y - 1].hasOwnProperty('figure') && !field[this.x - 2][this.y - 2].hasOwnProperty('figure') && field[this.x - 1][this.y - 1].figure.color == 'black' ||
-			this.x < 6 && this.y > 1 && this.color == 'white' && field[this.x + 1][this.y - 1].hasOwnProperty('figure') && !field[this.x + 2][this.y - 2].hasOwnProperty('figure') && field[this.x + 1][this.y - 1].figure.color == 'black' ||
-			this.x < 6 && this.y < 6 && this.color == 'black' && field[this.x + 1][this.y + 1].hasOwnProperty('figure') && !field[this.x + 2][this.y + 2].hasOwnProperty('figure') && field[this.x + 1][this.y + 1].figure.color == 'white' ||
-			this.x > 1 && this.y < 6 && this.color == 'black' && field[this.x - 1][this.y + 1].hasOwnProperty('figure') && !field[this.x - 2][this.y + 2].hasOwnProperty('figure') && field[this.x - 1][this.y + 1].figure.color == 'white') 
-			player = !player
 		
 		player = !player
 		
