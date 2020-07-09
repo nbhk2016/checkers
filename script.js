@@ -14,6 +14,7 @@ class Figure {
 		this.x = x
 		this.y = y
 		this.color = color
+		this.isQueen = false
 	}
 
 	move(x, y){
@@ -29,6 +30,8 @@ class Figure {
 			elem.classList.add('blackFigure')
 			elem.setAttribute('data-color', 'black')
 		}
+
+		if (this.isQueen) elem.classList.add('queen')
 
 		document.querySelectorAll(`td[data-x="${x}"][data-y="${y}"]`)[0].appendChild(elem)
 
@@ -47,7 +50,11 @@ class Figure {
 		}
 		
 		if (!(this.x == x && this.y == y) && (!field[x][y].figure) && field[x][y].color == 'black') {
-			if (Math.abs(this.x - x) == 1 && (this.color == 'black' && this.y - y == -1 || this.color == 'white' && this.y - y == 1))
+			if (this.isQueen && Math.abs(this.x - x) == 1){
+				this.move(x, y)
+			}
+
+			else if (Math.abs(this.x - x) == 1 && (this.color == 'black'  && this.y - y == -1 || this.color == 'white' && this.y - y == 1))
 				this.move(x, y)
 			 
 			else if (Math.abs(this.x - x) == 2 && (this.color == 'black' && this.y - y == -2 || this.color == 'white' && this.y - y == 2)){
@@ -86,7 +93,17 @@ class Figure {
 					}
 			}
 		}
-		
+
+		if (this.color == 'white' && this.y == 0){
+			this.isQueen = true
+			document.querySelectorAll(`td[data-x="${this.x}"][data-y="${this.y}"]>span`)[0].classList.add('queen')
+		}
+
+		if (this.color == 'black' && this.y == 7){
+			this.isQueen = true
+			document.querySelectorAll(`td[data-x="${this.x}"][data-y="${this.y}"]>span`)[0].classList.add('queen')
+		}
+
 		player = !player
 		
 	}
