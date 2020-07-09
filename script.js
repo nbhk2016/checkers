@@ -57,7 +57,7 @@ class Figure {
 			else if (Math.abs(this.x - x) == 1 && (this.color == 'black'  && this.y - y == -1 || this.color == 'white' && this.y - y == 1))
 				this.move(x, y)
 			 
-			else if (Math.abs(this.x - x) == 2 && (this.color == 'black' && this.y - y == -2 || this.color == 'white' && this.y - y == 2)){
+			else if (Math.abs(this.x - x) == 2 && (this.color == 'black' && Math.abs(this.y - y) == 2 || this.color == 'white' && Math.abs(this.y - y) == 2)){
 				if (this.color == 'white'){
 					if (this.x - x == 2 && field[this.x - 1][this.y - 1].figure && field[x + 1][y + 1].figure && field[x + 1][y + 1].figure.color == 'black' && field[this.x - 1][this.y - 1].figure == field[x + 1][y + 1].figure){
 						this.move(x, y)
@@ -68,6 +68,18 @@ class Figure {
 						this.move(x, y)
 						field[x - 1][y + 1].figure.del()
 					}
+					////
+					else if (this.x - x == 2 && field[x + 1][y - 1].figure && field[this.x - 1][this.y + 1].figure && field[x + 1][y - 1].figure == field[this.x - 1][this.y + 1].figure && field[this.x - 1][this.y + 1].figure.color == 'black'){
+						this.move(x, y)
+						field[x + 1][y - 1].figure.del()
+					}
+
+					else if (this.x - x == -2 && field[x - 1][y - 1].figure && field[this.x + 1][this.y + 1].figure && field[x - 1][y - 1].figure == field[this.x + 1][this.y + 1].figure && field[this.x + 1][this.y + 1].figure.color == 'black'){
+						this.move(x, y)
+						field[x - 1][y - 1].figure.del()
+					}
+					////
+
 				} 
 
 				else if (this.color == 'black'){
@@ -80,6 +92,17 @@ class Figure {
 						this.move(x, y)
 						field[x + 1][y - 1].figure.del()
 					}
+					//////
+					if (this.x - x == 2 && field[this.x - 1][this.y - 1].figure && field[x + 1][y + 1].figure && field[x + 1][y + 1].figure.color == 'white' && field[this.x - 1][this.y - 1].figure == field[x + 1][y + 1].figure){
+						this.move(x, y)
+						field[x + 1][y + 1].figure.del()
+					}
+
+					else if (this.x - x == -2 && field[this.x + 1][this.y - 1].figure && field[x - 1][y + 1].figure && field[x - 1][y + 1].figure.color == 'white' && field[this.x + 1][this.y - 1].figure == field[x - 1][y + 1].figure){
+						this.move(x, y)
+						field[x - 1][y + 1].figure.del()
+					}
+					//////
 
 				}
 
