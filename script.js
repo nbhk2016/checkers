@@ -59,77 +59,52 @@ class Figure {
 			 
 			else if (Math.abs(this.x - x) == 2 && (this.color == 'black' && Math.abs(this.y - y) == 2 || this.color == 'white' && Math.abs(this.y - y) == 2)){
 				if (this.color == 'white'){
-					try {
-						if (this.x - x == 2 && field[x + 1][y - 1].figure && field[this.x - 1][this.y + 1].figure && field[x + 1][y - 1].figure == field[this.x - 1][this.y + 1].figure && field[this.x - 1][this.y + 1].figure.color == 'black'){
-							this.move(x, y)
-							field[x + 1][y - 1].figure.del()
-						}
-					} finally {
-
-						try {
-							if (this.x - x == -2 && field[x - 1][y - 1].figure && field[this.x + 1][this.y + 1].figure && field[x - 1][y - 1].figure == field[this.x + 1][this.y + 1].figure && field[this.x + 1][this.y + 1].figure.color == 'black'){
-								this.move(x, y)
-								field[x - 1][y - 1].figure.del()
-							}
-						} finally {
-
-							try {
-								if (this.x - x == 2 && field[this.x - 1][this.y - 1].figure && field[x + 1][y + 1].figure && field[x + 1][y + 1].figure.color == 'black' && field[this.x - 1][this.y - 1].figure == field[x + 1][y + 1].figure){
-									this.move(x, y)
-									field[x + 1][y + 1].figure.del()
-								}
-							} finally {
-								try {
-									if (this.x - x == -2 && field[this.x + 1][this.y - 1].figure && field[x - 1][y + 1].figure && field[x - 1][y + 1].figure.color == 'black' && field[this.x + 1][this.y - 1].figure == field[x - 1][y + 1].figure){
-										this.move(x, y)
-										field[x - 1][y + 1].figure.del()
-									}
-								} finally {
-
-								}
-								
-							}
-						}
+					if (this.x > 1 && this.y > 1 && !field[this.x - 2][this.y - 2].hasOwnProperty('figure') && field[this.x - 1][this.y - 1].hasOwnProperty('figure') && field[this.x - 1][this.y - 1].figure.color == 'black' && x == this.x - 2 && y == this.y - 2){
+						field[this.x - 1][this.y - 1].figure.del()
+						this.move(x, y)
 					}
+
+					if (this.x < 6 && this.y > 1 && !field[this.x + 2][this.y - 2].hasOwnProperty('figure') && field[this.x + 1][this.y - 1].hasOwnProperty('figure') && field[this.x + 1][this.y - 1].figure.color == 'black' && x == this.x + 2 && y == this.y - 2){
+						field[this.x + 1][this.y - 1].figure.del()
+						this.move(x, y)
+					}
+
+					if (this.x < 6 && this.y < 6 && !field[this.x + 2][this.y + 2].hasOwnProperty('figure') && field[this.x + 1][this.y + 1].hasOwnProperty('figure') && field[this.x + 1][this.y + 1].figure.color == 'black' && x == this.x + 2 && y == this.y + 2){
+						field[this.x + 1][this.y + 1].figure.del()
+						this.move(x, y)
+					}
+
+					if (this.x > 1 && this.y < 6 && !field[this.x - 2][this.y + 2].hasOwnProperty('figure') && field[this.x - 1][this.y + 1].hasOwnProperty('figure') && field[this.x - 1][this.y + 1].figure.color == 'black' && x == this.x - 2 && y == this.y + 2){
+						field[this.x - 1][this.y + 1].figure.del()
+						this.move(x, y)
+					}
+
 					
-					////
-
-				} 
-
-				else if (this.color == 'black'){
-					try {
-						if (this.x - x == -2 && field[x - 1][y - 1].figure && field[this.x + 1][this.y + 1].figure && field[x - 1][y - 1].figure == field[this.x + 1][this.y + 1].figure && field[this.x + 1][this.y + 1].figure.color == 'white'){
-							this.move(x, y)
-							field[x - 1][y - 1].figure.del()
-						}
-					} finally {
-						try {
-							if (this.x - x == 2 && field[x + 1][y - 1].figure && field[this.x - 1][this.y + 1].figure && field[x + 1][y - 1].figure == field[this.x - 1][this.y + 1].figure && field[this.x - 1][this.y + 1].figure.color == 'white'){
-								this.move(x, y)
-								field[x + 1][y - 1].figure.del()
-							}
-						} finally {
-							try {
-								if (this.x - x == 2 && field[this.x - 1][this.y - 1].figure && field[x + 1][y + 1].figure && field[x + 1][y + 1].figure.color == 'white' && field[this.x - 1][this.y - 1].figure == field[x + 1][y + 1].figure){
-									this.move(x, y)
-									field[x + 1][y + 1].figure.del()
-								}
-							} finally {
-								try {
-									if (this.x - x == -2 && field[this.x + 1][this.y - 1].figure && field[x - 1][y + 1].figure && field[x - 1][y + 1].figure.color == 'white' && field[this.x + 1][this.y - 1].figure == field[x - 1][y + 1].figure){
-										this.move(x, y)
-										field[x - 1][y + 1].figure.del()
-									}
-								} finally {
-
-								}
-							}
-						}
-					}
-					//////
-
 				}
 
+				else if (this.color == 'black'){
+					if (this.x > 1 && this.y > 1 && !field[this.x - 2][this.y - 2].hasOwnProperty('figure') && field[this.x - 1][this.y - 1].hasOwnProperty('figure') && field[this.x - 1][this.y - 1].figure.color == 'white' && x == this.x - 2 && y == this.y - 2){
+						field[this.x - 1][this.y - 1].figure.del()
+						this.move(x, y)
+					}
+
+					if (this.x < 6 && this.y > 1 && !field[this.x + 2][this.y - 2].hasOwnProperty('figure') && field[this.x + 1][this.y - 1].hasOwnProperty('figure') && field[this.x + 1][this.y - 1].figure.color == 'white' && x == this.x + 2 && y == this.y - 2){
+						field[this.x + 1][this.y - 1].figure.del()
+						this.move(x, y)
+					}
+
+					if (this.x < 6 && this.y < 6 && !field[this.x + 2][this.y + 2].hasOwnProperty('figure') && field[this.x + 1][this.y + 1].hasOwnProperty('figure') && field[this.x + 1][this.y + 1].figure.color == 'white' && x == this.x + 2 && y == this.y + 2){
+						field[this.x + 1][this.y + 1].figure.del()
+						this.move(x, y)
+					}
+
+					if (this.x > 1 && this.y < 6 && !field[this.x - 2][this.y + 2].hasOwnProperty('figure') && field[this.x - 1][this.y + 1].hasOwnProperty('figure') && field[this.x - 1][this.y + 1].figure.color == 'white' && x == this.x - 2 && y == this.y + 2){
+						field[this.x - 1][this.y + 1].figure.del()
+						this.move(x, y)
+					}
+
+
+				}
 				if (this.x > 1 && this.y > 1 && this.color == 'white' && field[this.x - 1][this.y - 1].hasOwnProperty('figure') && !field[this.x - 2][this.y - 2].hasOwnProperty('figure') && field[this.x - 1][this.y - 1].figure.color == 'black' ||
 					this.x < 6 && this.y > 1 && this.color == 'white' && field[this.x + 1][this.y - 1].hasOwnProperty('figure') && !field[this.x + 2][this.y - 2].hasOwnProperty('figure') && field[this.x + 1][this.y - 1].figure.color == 'black' ||
 					this.x < 6 && this.y < 6 && this.color == 'white' && field[this.x + 1][this.y + 1].hasOwnProperty('figure') && !field[this.x + 2][this.y + 2].hasOwnProperty('figure') && field[this.x + 1][this.y + 1].figure.color == 'black' ||
